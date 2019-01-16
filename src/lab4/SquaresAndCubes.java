@@ -35,6 +35,7 @@ public class SquaresAndCubes {
 			} else {
 				System.out.println("ENTRY INVALID");
 			}
+			scnr.nextLine();
 		}
 	}
 	
