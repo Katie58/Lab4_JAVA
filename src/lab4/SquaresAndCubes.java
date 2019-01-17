@@ -109,17 +109,14 @@ public class SquaresAndCubes {
 		int padding = 0;
 		System.out.println("\nMultiplication Table:");
 		for (int i = 1; i <= userInputInt; i++) {
-			//System.out.printf("%-11s", i);
-			System.out.print(i + repeat(' ', ((String.valueOf(i * userInputInt).length() + 1) - String.valueOf(i).length())));
-			padding += (String.valueOf(i * userInputInt).length() + 1);
+			System.out.print(" " + i + repeat(' ', ((String.valueOf(i * userInputInt).length() + 1) - String.valueOf(i).length())));
+			padding += (String.valueOf(i * userInputInt).length() + 2);
 		}
 		System.out.println();
-		//System.out.println(repeat('=', 11 * userInputInt));
 		System.out.println(repeat('=', padding - 1));
 		for (int i = 1; i <= userInputInt; i++) {
 			for (int j = 1; j <= userInputInt; j++) {
-				//System.out.printf("%-11s", i * j);
-				System.out.print((i * j) + repeat(' ', ((String.valueOf(j * userInputInt).length() + 1) - String.valueOf(i * j).length())));
+				System.out.print(" " + (i * j) + repeat(' ', ((String.valueOf(j * userInputInt).length() + 1) - String.valueOf(i * j).length())));
 			}
 			System.out.println();
 			System.out.println(repeat('-', padding - 1));
@@ -136,16 +133,20 @@ public class SquaresAndCubes {
 	}
 	
 	public static boolean retry() {
-		char cont = ' ';
+		char first = ' ';
 		System.out.print("Continue? (y/n) ");
-		cont = scnr.next().charAt(0);
-		scnr.nextLine();
+		if (scnr.hasNextLine()) {
+			first = scnr.next().charAt(0);
+		}
 		
-		while(cont != 'y' && cont != 'Y' && cont != 'n' && cont != 'N') {
-		System.out.println("What was that?... type 'y' to continue or 'n' to exit");
-		cont = scnr.nextLine().charAt(0);
+		while(first != 'y' && first != 'Y' && first != 'n' && first != 'N') {
+			System.out.println("What was that?... type 'y' to continue or 'n' to exit");
+			if (scnr.hasNext()) {
+				first = scnr.next().charAt(0);
+			}
 		}		
-		if (cont == 'y' || cont == 'Y') {
+		if (first == 'y' || first == 'Y') {
+			scnr.nextLine();
 			return true;
 		}
 		else {
